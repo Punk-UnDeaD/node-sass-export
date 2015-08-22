@@ -50,13 +50,13 @@
       var output = exporter.get_value(value);
       if (opt.extend && 'SassMap' === value.constructor.name) {
         try {
-          _.defaults(output, JSON.parse(fs.readFileSync(path + file.getValue())));
+          _.defaults(output, JSON.parse(fs.readFileSync(path + '/' + file.getValue())));
         }
         catch (e) {
           console.log(e);
         }
       }
-      fs.writeFileSync(path + file.getValue(), opt.prefix + JSON.stringify(output, null, '  ') + opt.suffix);
+      fs.writeFileSync(path + '/' + file.getValue(), opt.prefix + JSON.stringify(output, null, '  ') + opt.suffix);
       return value;
     }
   };

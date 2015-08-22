@@ -1,6 +1,6 @@
 {
   "name": "node-sass-export",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "lightweight extension that allows you to export an encoded Sass variables (map, list, etc) into an external JSON file",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,14 @@
   "dependencies": {
     "fs": "0.0.2",
     "lodash": "~3.10.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Punk-UnDeaD/node-sass-export.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Punk-UnDeaD/node-sass-export/issues"
+  },
+  "homepage": "https://github.com/Punk-UnDeaD/node-sass-export#readme"
 }
