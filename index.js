@@ -1,7 +1,7 @@
 'use strict';
 (function (module) {
   var _ = require('lodash');
-  var fs = require('fs');
+  var fs = require('graceful-fs');
 
   var exporter = module.exports = function (path, name) {
     var out = {};
