@@ -1,6 +1,6 @@
 # node-sass-export
 
-**node-sass-export** provide export function fo use with Node-sass [function option](https://github.com/sass/node-sass#functions--v300---experimental). 
+**node-sass-export** provide export function for use with Node-sass [function option](https://github.com/sass/node-sass#functions--v300---experimental).
 
 ## Usage
 
@@ -56,4 +56,9 @@ $breakpoints: export('lib/breakpoints.js', $breakpoints, (prefix:'var breakpoint
 #### Usage with another functions
 ```
 { functions: _.extend(export_sass('export_path'), {'foobar()': function(){}}) }
+```
+
+#### Export hex colors
+```
+$colors: export('lib/colors.json', $colors, (hex_color: true));
 ```

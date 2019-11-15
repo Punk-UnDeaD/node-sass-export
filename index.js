@@ -9,27 +9,37 @@
     return out;
   };
 
-  exporter.get_value = function get_value(a) {
+  function toHex(c) {
+    var hex = Math.round(c).toString(16).toUpperCase();
+    return hex.length == 1 ? "0" + hex : hex;
+  };
+
+  exporter.get_value = function get_value(a, opt) {
     var value, i;
     switch (a.constructor.name) {
       case 'SassList':
         value = [];
         for (i = 0; i < a.getLength(); i++) {
-          value.push(get_value(a.getValue(i)));
+          value.push(get_value(a.getValue(i), opt));
         }
         break;
       case 'SassMap':
         value = {};
         for (i = 0; i < a.getLength(); i++) {
-          value[a.getKey(i).getValue()] = get_value(a.getValue(i));
+          value[a.getKey(i).getValue()] = get_value(a.getValue(i), opt);
         }
         break;
       case 'SassColor':
         if (1 === a.getA()) {
-          value = 'rgb(' + a.getR() + ', ' + a.getG() + ', ' + a.getB() + ')';
+          if (opt.hex_color) {
+            value = '#' + toHex(a.getR()) + toHex(a.getG()) + toHex(a.getB());
+          }
+          else {
+            value = 'rgb(' + Math.round(a.getR()) + ', ' + Math.round(a.getG()) + ', ' + Math.round(a.getB()) + ')';
+          }
         }
         else {
-          value = 'rgba(' + a.getR() + ', ' + a.getG() + ', ' + a.getB() + ', ' + a.getA() + ')';
+          value = 'rgba(' + Math.round(a.getR()) + ', ' + Math.round(a.getG()) + ', ' + Math.round(a.getB()) + ', ' + a.getA() + ')';
         }
         break;
       case 'SassNumber':
@@ -46,8 +56,13 @@
 
   exporter.function = function (path) {
     return function (file, value, options) {
-      var opt = _.defaults(exporter.get_value(options), {prefix: '', suffix: '', extend: false});
-      var output = exporter.get_value(value);
+      var opt = _.defaults(exporter.get_value(options), {
+        prefix: '',
+        suffix: '',
+        extend: false,
+        hex_color: false
+      });
+      var output = exporter.get_value(value, opt);
       if (opt.extend && 'SassMap' === value.constructor.name) {
         try {
           _.defaults(output, JSON.parse(fs.readFileSync(path + '/' + file.getValue())));
