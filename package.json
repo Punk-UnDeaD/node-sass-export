@@ -1,6 +1,6 @@
 {
   "name": "node-sass-export",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "lightweight extension that allows you to export an encoded Sass variables (map, list, etc) into an external JSON file",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,7 @@
   "author": "punkundead",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "graceful-fs": "^4.1",
-    "lodash": "^4.17"
+    "graceful-fs": "^4.1"
   },
   "devDependencies": {},
   "repository": {
