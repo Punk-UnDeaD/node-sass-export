@@ -1,6 +1,6 @@
 'use strict';
 (function (module) {
-  const fs = require('graceful-fs');
+  const fs = require('fs');
 
   module.exports = function (path, name) {
     const exports = {};
